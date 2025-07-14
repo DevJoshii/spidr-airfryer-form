@@ -27,9 +27,3 @@ On submission, the form simply logs the collected data to the browser console (p
 
 ---
 
-## 🚀 Getting Started (Local)
-
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/DevJoshii/spidr-airfryer-form.git
-   cd spidr-airfryer-form
