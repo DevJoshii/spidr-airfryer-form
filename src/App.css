@@ -1,61 +1,136 @@
+/* 1) Import the condensed font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+/* 2) Brand variables */
+:root {
+  --teal:          #47A6A8;
+  --teal-dark:     #3E8E90;
+  --bg-dark:       #121212;
+  --panel-bg:      rgba(18,18,18,0.85);
+  --white:         #FFFFFF;
+  --radius:        4px;
+  --spacer:        1rem;
+  --spacer-lg:     2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #fafafa;
-  color: #333;
+  margin:    0;
+  padding:   0;
+  font-family: 'Roboto Condensed', sans-serif;
+  background:  var(--bg-dark);
+  color:       var(--white);
+
+  /* perfect centering */
+  display:       flex;
+  justify-content: center;
+  align-items:     center;
+  min-height:      100vh;
+  padding:         var(--spacer);
+}
+
+/* 3) Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
 .form-container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width:        100%;
+  max-width:    400px;
+  padding:      var(--spacer-lg);
+  background:   var(--panel-bg);
+  border:       1px solid var(--teal);
+  border-radius: var(--radius);
+  box-shadow:   0 8px 16px rgba(0,0,0,0.6);
+  animation:    fadeInUp 0.6s ease forwards;
+  opacity:      0; /* start invisible, fadeInUp brings to 1 */
 }
 
+/* 4) Heading style */
 .form-title {
-  text-align: center;
-  margin-bottom: 24px;
-  font-weight: 600;
-  color: #111;
+  margin:        0 0 var(--spacer-lg);
+  text-align:    center;
+  font-size:     1.75rem;
+  font-weight:   700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color:         var(--teal);
 }
 
+/* 5) Form layout with consistent gaps */
+form {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--spacer);
+}
+
+/* 6) Label above input */
 form label {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 14px;
-  color: #555;
+  display:        flex;
+  flex-direction: column;
+  font-size:      0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color:          var(--white);
 }
 
+/* 7) Inputs as semi-transparent fields */
 form input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-top: 6px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  width:         100%;
+  padding:       0.75rem;
+  font-size:     1rem;
+  background:    rgba(255,255,255,0.08);
+  border:        1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius);
+  color:         var(--white);
+  outline:       none;
+  transition:    background 0.2s, border-color 0.2s;
+}
+
+form input::placeholder {
+  color: rgba(255,255,255,0.5);
 }
 
 form input:focus {
-  outline: none;
-  border-color: #f15a24;
-  box-shadow: 0 0 0 2px rgba(241,90,36,0.2);
+  background: rgba(255,255,255,0.15);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(71,166,168,0.3);
 }
 
+/* 8) Submit button, ghost → solid on hover */
 button {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: #f15a24;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 12px;
+  padding:        0.75rem;
+  font-size:      1rem;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background:     transparent;
+  color:          var(--teal);
+  border:         2px solid var(--teal);
+  border-radius:  var(--radius);
+  cursor:         pointer;
+  transition:     background 0.2s, color 0.2s;
+  align-self:     stretch;
 }
 
 button:hover {
-  background-color: #d14a20;
+  background: var(--teal);
+  color:      var(--bg-dark);
+}
+
+/* 9) Mobile responsiveness */
+@media (max-width: 480px) {
+  .form-container {
+    max-width: 100%;
+    padding:   var(--spacer);
+  }
+  .form-title {
+    font-size: 1.5rem;
+  }
 }
